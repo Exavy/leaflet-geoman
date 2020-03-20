@@ -21,6 +21,7 @@ import './Draw/L.PM.Draw.Polygon';
 import './Draw/L.PM.Draw.Rectangle';
 import './Draw/L.PM.Draw.Circle';
 import './Draw/L.PM.Draw.CircleMarker';
+import './Draw/L.PM.Draw.SldMarker';
 import './Draw/L.PM.Draw.Cut';
 
 import Edit from './Edit/L.PM.Edit';
@@ -31,6 +32,7 @@ import './Edit/L.PM.Edit.Polygon';
 import './Edit/L.PM.Edit.Rectangle';
 import './Edit/L.PM.Edit.Circle';
 import './Edit/L.PM.Edit.CircleMarker';
+import './Edit/L.PM.Edit.SldMarker';
 
 import '../css/layers.css';
 import '../css/controls.css';
@@ -84,6 +86,19 @@ L.PM = L.PM || {
     }
 
     L.Marker.addInitHook(initMarker);
+	
+	function initSldMarker() {
+      this.pm = undefined;
+
+      if (options.optIn) {
+        if (this.options.pmIgnore === false) {
+          this.pm = new L.PM.Edit.SldMarker(this);
+        }
+      } else if (!this.options.pmIgnore) {
+        this.pm = new L.PM.Edit.SldMarker(this);
+      }
+    }
+    L.SldMarker.addInitHook(initSldMarker);
 
     function initCircleMarker() {
       this.pm = undefined;

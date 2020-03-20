@@ -184,7 +184,7 @@ const DragMixin = {
         };
       });
 
-    if (this._layer instanceof L.CircleMarker) {
+    if (this._layer instanceof L.CircleMarker || this._layer instanceof L.SldMarker) {
       // set new coordinates and redraw
       this._layer.setLatLng(latlng);
     } else {

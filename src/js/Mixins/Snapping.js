@@ -92,7 +92,8 @@ const SnapMixin = {
 
     const isMarker =
       closestLayer.layer instanceof L.Marker ||
-      closestLayer.layer instanceof L.CircleMarker;
+      closestLayer.layer instanceof L.CircleMarker ||
+      closestLayer.layer instanceof L.SldMarker;
 
     // find the final latlng that we want to snap to
     let snapLatLng;
@@ -224,7 +225,8 @@ const SnapMixin = {
       if (
         (layer instanceof L.Polyline ||
           layer instanceof L.Marker ||
-          layer instanceof L.CircleMarker) &&
+          layer instanceof L.CircleMarker ||
+          layer instanceof L.SldMarker) &&
         layer.options.snapIgnore !== true
       ) {
 
@@ -303,7 +305,7 @@ const SnapMixin = {
 
     // is this a marker?
     const isMarker =
-      layer instanceof L.Marker || layer instanceof L.CircleMarker;
+      layer instanceof L.Marker || layer instanceof L.CircleMarker || layer instanceof L.SldMarker;
 
     // is it a polygon?
     const isPolygon = layer instanceof L.Polygon;
